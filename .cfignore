@@ -1,0 +1,7 @@
+*
+
+!static/
+!templates/
+!process-discovery.py
+!Procfile
+!requirements.txt

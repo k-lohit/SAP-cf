@@ -1,0 +1,7 @@
+applications:
+- name: python_backend
+  health-check-type: process
+  instances: 1
+  buildpacks: 
+  - python_buildpack
+  memory: 512M
