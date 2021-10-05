@@ -1,0 +1,31 @@
+compversion-id: 73555000100200007709
+comptype: HDB_CLIENT_NO_CRYPTO
+keyname: HDB_CLIENT_NO_CRYPTO
+keycaption: SAP HANA CLIENT W/O CRYPTO
+keyvendor: sap.com
+release: 2
+rev-number: 9
+rev-patchlevel: 28
+rev-changelist: 1627673934
+sp-number: 9
+sp-patchlevel: 28
+date: 2021-07-30 22:40:17
+platform: NTamd64
+fullversion: 2.9.28.1627673934
+compiletype: rel
+compilebranch: unknown
+git-hash: 670c30156c6ff7281f99df5f11bfa59f3918ebc8
+git-headcount: 10963
+git-mergetime: 2021-07-30 15:38:54 -0400
+git-mergeepoch: 1627673934
+compiler-version-full: Microsoft (R) C/C++ Optimizing Compiler Version 19.00.24210 for x64
+compiler-version: Microsoft 19.00
+artifact-id: 2.9.28
+ngdbc-version: 2.9.16
+lcmsdk-artifact-id: 2.6.40
+calcviewapi-cloud-version: 1.5.3
+calcviewapi-onprem-version: 1.5.3
+hana_ml-version: 2.9.21061901
+hana.ml.r-version: 2.9.21061901
+version-note: Please see SAP Note https://launchpad.support.sap.com/#/notes/2941449 for further details about HANA client versions
+compatibility-note: Please see SAP Note https://launchpad.support.sap.com/#/notes/1906576 for further details about HANA client and server compatibility
