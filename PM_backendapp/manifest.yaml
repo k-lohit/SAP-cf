@@ -1,13 +1,10 @@
 applications:
-- name: pm_backend
+- name: python_backend
   health-check-type: process
   instances: 1
   path: .
   buildpacks: 
-  - https://github.com/cloudfoundry/python-buildpack.git#v1.6.29
+  - python_buildpack
   memory: 512M
-  stack: cflinuxfs3
-  services:
-    - ngp-xsuaa
-    - hana
-    - application-logs
+services:
+  - HDI_bind_backend
