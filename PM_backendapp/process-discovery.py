@@ -1,32 +1,23 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
-#coding: utf-8
+import sys
 import os
-from flask import Flask, request, render_template
+from flask import Flask, request, abort, Response, send_from_directory
+
+from cfenv import AppEnv
+env = AppEnv()
 
 # bootstrap the app
 app = Flask(__name__)
+app.config["DEBUG"] = True
 
-# set the port dynamically with a default of 3000 for local development
-port = int(os.getenv('PORT', '3000'))
+# set the port dynamically with a default of 3000 for local development)
+port = int(os.environ.get('PORT', 3000))
 
-
-# In[2]:
-
-
-# @app.route("/")  
+@app.route("/")
 #Python decorator @app.route. Flask uses it to connect URL endpoints with code contained in functions. 
 #The argument to @app.route defines the URL’s path component, which is the root path ("/") in this case.
 
-
-# In[3]:
-
-
 #libraries
+
 import pm4py
 from datetime import datetime
 import pandas as pd
@@ -36,17 +27,11 @@ from pm4py.objects.log.importer.xes import importer as xes_importer
 from pm4py.objects.log.util import dataframe_utils
 
 
-# In[4]:
-
-
 # process mining 
 from pm4py.algo.discovery.alpha import algorithm as alpha_miner
 from pm4py.algo.discovery.inductive import algorithm as inductive_miner
 from pm4py.algo.discovery.heuristics import algorithm as heuristics_miner
 from pm4py.algo.discovery.dfg import algorithm as dfg_discovery
-
-
-# In[5]:
 
 
 # viz
@@ -56,10 +41,6 @@ from pm4py.visualization.process_tree import visualizer as pt_visualizer
 from pm4py.visualization.heuristics_net import visualizer as hn_visualizer
 from pm4py.visualization.dfg import visualizer as dfg_visualization
 from pm4py.visualization.bpmn import visualizer as bpmn_viz
-
-
-# In[6]:
-
 
 # misc 
 from pm4py.objects.conversion.process_tree import converter as pt_converter
@@ -71,13 +52,8 @@ from pm4py.algo.filtering.log.variants import variants_filter
 #log = xes_importer.apply('running-example.xes')
 
 
-# In[7]:
-
-
-#code
-
-# csv
-df = pd.read_csv('D:/SAP_Lohit/SAP CF/Process Mining_MDG-S/cf_Python Backend app/MDGS_Extract_Log.csv', sep = ';')
+# csv code
+df = pd.read_csv('/home/user/.cf/SAP-cf/PM_backendapp/MDGS_Extract_Log.csv', sep = ';')
 
 #df = pd.to_datetime(df["Created On"][1], dayfirst = True)
 
@@ -88,9 +64,6 @@ del df["Creation Time"]
 df = dataframe_utils.convert_timestamp_columns_in_df(df)
 df = df.sort_values(["case:concept:name", "time:timestamp"])
 #print(df)
-
-
-# In[8]:
 
 
 # create log
@@ -118,9 +91,6 @@ heu_net = heuristics_miner.apply_heu(log)
 # viz
 gviz = hn_visualizer.apply(heu_net)
 hn_visualizer.view(gviz)
-
-
-# In[9]:
 
 
 ######################################
@@ -167,3 +137,5 @@ for variant_key, list_of_change_request in variants.items(): #variant_key = proc
             print(activity)
             activity = ''
 
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=int(os.getenv("PORT", 8080)))
